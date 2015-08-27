@@ -19,12 +19,18 @@ if ( ! function_exists('get_phrase'))
 	function get_phrase($phrase = '') {
 		$CI	=&	get_instance();
 		$CI->load->database();
-		$current_language	=	$CI->session->userdata('current_language');
+		if($CI->session->userdata('language_flag')==1)
+                {
+                    $current_language	=	$CI->session->userdata('current_language');
 
-//		if ( $current_language	==	'') {
+                }else{
+                    
+                    //		if ( $current_language	==	'') {
 			$current_language	=	$CI->db->get_where('settings' , array('type'=>'language'))->row()->description;
 			$CI->session->set_userdata('current_language' , $current_language);
 //		}
+
+                }
 
 
 		$query	=	$CI->db->get_where('language' , array('phrase' => $phrase));

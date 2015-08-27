@@ -28,10 +28,10 @@
 		
 			<?php include 'header.php';?>
 
-           <h5 style="margin:20px 0px; color:#818da1; font-weight:200;">
+<!--           <h5 style="margin:20px 0px; color:#818da1; font-weight:200;">
            	<i class="entypo-home"></i> 
 				<?php echo 'Home'.'   <i class="fa fa-long-arrow-right"></i>'.$page_title;?>
-           </h5>
+           </h5>-->
 
                     
 			<?php include $account_type.'/'.$page_name.'.php';?>

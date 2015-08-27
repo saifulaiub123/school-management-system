@@ -34,10 +34,10 @@
         
 		<ul class="list-inline links-list pull-right">
 			
-			<!-- Language Selector 			
+			<!--Language Selector--> 			
            <li class="dropdown language-selector">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">
-                        <i class="entypo-globe"></i> language
+                        <i class="entypo-globe"></i> <?php echo get_phrase(language); ?>
                     </a>
 				
 				<ul class="dropdown-menu <?php if ($text_align == 'left-to-right') echo 'pull-left'; else echo 'pull-right';?>">
@@ -49,7 +49,7 @@
                                 ?>
                                     <li class="<?php if($this->session->userdata('current_language') == $field)echo 'active';?>">
                                         <a href="<?php echo base_url();?>index.php?multilanguage/select_language/<?php echo $field;?>">
-                                            <img src="assets/images/flag/<?php echo $field;?>.png" style="width:16px; height:16px;" />	
+                                            <!--<img src="assets/images/flag/<?php echo $field;?>.png" style="width:16px; height:16px;" />-->	
 												 <span><?php echo $field;?></span>
                                         </a>
                                     </li>
@@ -60,35 +60,46 @@
 				</ul>
 				
 			</li>
-			-->
+			
 			<!--<li class="sep"></li>-->
-			
-			
 		
-			<li class="dropdown language-selector" style="background-color: #0288D1;">
+                
+			<li class="dropdown language-selector" style="">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">
                         	<i class="entypo-down-open-big"></i> <?php echo get_phrase('account');?>
                     </a>
 				
 				<ul class="dropdown-menu <?php if ($text_align == 'right-to-left') echo 'pull-right'; else echo 'pull-left';?>">
 					<li>
-						<a href="<?php echo base_url();?>index.php?<?php echo $account_type;?>/system_settings">
+						<a href="<?php echo base_url();?>index.php?<?php echo $account_type;?>/student_information">
                         	<i class="entypo-info"></i>
-							<span><?php echo get_phrase('see_my_profile');?></span>
+							<span><?php echo get_phrase('profile');?></span>
 						</a>
 					</li>
-					<li>
+<!--                                        <li>
+						<a href="<?php echo base_url();?>index.php?<?php echo $account_type;?>/system_settings">
+                        	<i class="entypo-info"></i>
+							<span><?php echo get_phrase('account');?></span>
+						</a>
+					</li>-->
+<li>
+						<a href="<?php echo base_url();?>index.php?<?php echo $account_type;?>/system_settings">
+                        	<i class="entypo-info"></i>
+							<span><?php echo get_phrase('change_password');?></span>
+						</a>
+					</li>
+<!--					<li>
 						<a href="<?php echo base_url();?>index.php?<?php echo $account_type;?>/system_settings">
                         	<i class="entypo-info"></i>
 							<span><?php echo get_phrase('language');?></span>
 						</a>
-					</li>
-					<li>
+					</li>-->
+<!--					<li>
 						<a href="<?php echo base_url();?>index.php?<?php echo $account_type;?>/manage_profile">
                         	<i class="entypo-key"></i>
 							<span><?php echo get_phrase('change_password');?></span>
 						</a>
-					</li>
+					</li>-->
 					
 					
 				
@@ -105,29 +116,29 @@
 		   
 		   
 		   
-		   <li class="dropdown language-selector" style="background-color: #0288D1;">
+		   <li class="dropdown language-selector" style="">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">
-                        	<i class="entypo-down-open-big"></i> <?php echo get_phrase('you_are');?>
+                        	<i class="entypo-down-open-big"></i> <?php echo $this->session->userdata('name'); ?>
                     </a>
 				
 				<ul class="dropdown-menu <?php if ($text_align == 'right-to-left') echo 'pull-right'; else echo 'pull-left';?>">
-					<div class="drop-up">
-					<div class="drop">
-					<li>
-						
-							Lorem Ipsum <i class="entypo-user"></i>
-						
-					</li>	
-					</div>
-					<li>
+<!--					<div class="drop-up">
+					<div class="drop">-->
+                                            <li class="user-header">
+                                            <img src="uploads/user.jpg" class="img-circle" alt="User Image">
+                                            
+                                            </li>	
+					<!--</div>-->
+                                        <li style="text-align:center;">
 						<a href="<?php echo base_url();?>index.php?login/logout">
 							Log Out <i class="entypo-logout right"></i>
 						</a>
 					</li>
-					</div>
+					<!--</div>-->
 				</ul>
 				
 			</li>	
+                        
 		   
 		   
 		   

@@ -408,54 +408,30 @@ class Student extends CI_Controller
 		$this->load->view('backend/index', $page_data);
 	}
 	
+        
 	function student_information($class_id = '',$group_id='',$sec_id='')
 	{
 		if ($this->session->userdata('student_login') != 1)
                 redirect('login', 'refresh');
 	           
                 
-                $page_data['class_id'] 	= "";
-                $page_data['group_id'] 	= "";
-                $page_data['sec_id'] 	= "";
                 
                 
                 
-                if($this->session->userdata('session_set') != 1)
-                {
-                    $page_data['class_id'] 	= $this->input->post('class_id');
-                    $page_data['group_id'] 	= $this->input->post('dep_id');
-                    $page_data['sec_id'] 	= $this->input->post('sec_id');
-                }
-                else
-                {
-                    $page_data['class_id'] 	= $this->session->userdata('class_id');
-                    $page_data['group_id'] 	= $this->session->userdata('dep_id');
-                    $page_data['sec_id'] 	= $this->session->userdata('sec_id');
-                }
+                $page_data['page_name']  	= 'modal_student_profile';
                 
-                
-                $this->session->set_userdata('class_id',$page_data['class_id']);
-                $this->session->set_userdata('dep_id',$page_data['group_id']);
-                $this->session->set_userdata('sec_id',$page_data['sec_id']);
-                
-                $this->session->set_userdata('session_set','1');
-                
-                
-                
-                $page_data['page_name']  	= 'student_information';
-                
-                $group=array("No Group","Science","Commerce","Arts");
-		$page_data['page_title'] 	= get_phrase('student_information'). " - ".
+               // $group=array("No Group","Science","Commerce","Arts");
+		$page_data['page_title'] 	= get_phrase('profile'). " - ".
 
                 $this->crud_model->get_class_name($page_data['class_id']). " <span class='glyphicon glyphicon-circle-arrow-right'></span> ".
 
                 $group[$page_data['group_id']]. " <span class='glyphicon glyphicon-arrow-right sm'></span> ".
 
-                $this->crud_model->get_sec_name($page_data['sec_id']);
+                //$this->crud_model->get_sec_name($page_data['sec_id']);
 											
                 
 //                echo $page_data['sec_id'];
-                $this->session->set_userdata('session_set','0');
+               // $this->session->set_userdata('session_set','0');
                 
 		$this->load->view('backend/index', $page_data);
 	}
@@ -470,9 +446,10 @@ class Student extends CI_Controller
 											$this->crud_model->get_class_name($class_id);
 //		$page_data['class_id'] 	= $class_id;
                 
-                 $page_data['class_id'] = $this->input->post('class_id');
-                $page_data['group_id'] 	= $this->input->post('dep_id');
-                $page_data['sec_id'] 	= $this->input->post('sec_id');
+                $page_data['student_id'] = $this->session->userdata('student_id');
+                 $page_data['class_id'] = $this->session->userdata('class_id');
+                $page_data['group_id'] 	= $this->session->userdata('dep_id');
+                $page_data['sec_id'] 	= $this->session->userdata('sec_id');
                 
 //                 $page_data['students']=$this->db->get_where('student' , array('class_id'=>$class_id,'dep_id'=>$group_id,'sec_id'=>$sec_id))->result_array();
                
@@ -757,6 +734,14 @@ class Student extends CI_Controller
         $page_data['param1']=$param1;
         $page_data['param2']=$param2;
         $this->load->view('backend/index', $page_data);
+    }
+    function invoice_print($param1='')
+    {
+//        $page_data['page_name']  = $page_name;
+//        $page_data['page_title'] = get_phrase($page_name);
+        $page_data['param1']=$param1;
+//        $page_data['param2']=$param2;
+        $this->load->view('modal_view_invoice', $page_data);
     }
     
     
@@ -1354,9 +1339,9 @@ class Student extends CI_Controller
     {
 
         
-         $page_data['class_id'] = $this->input->post('class_id');
-         $page_data['group_id'] = $this->input->post('dep_id');
-         $page_data['sec_id']  = $this->input->post('sec_id');
+         $page_data['class_id'] = $this->session->userdata('class_id');
+         $page_data['group_id'] = $this->session->userdata('dep_id');
+         $page_data['sec_id']  = $this->session->userdata('sec_id');
          
        $page_data['page_name']  = 'class_routine';
 //        $page_data['page_title'] = get_phrase('manage_class_routine');
@@ -1570,7 +1555,7 @@ class Student extends CI_Controller
         
         
         $this->db->order_by('creation_timestamp', 'asc');
-        $page_data['invoices'] = $this->db->get('invoice')->result_array();
+        $page_data['invoices'] = $this->db->get_where('invoice',array('student_id'=>$this->session->userdata('student_id')))->result_array();
         $this->load->view('backend/index', $page_data);
     }
     
@@ -2114,12 +2099,14 @@ class Student extends CI_Controller
                 $this->db->update('student', array(
                     'password' => $data['new_password']
                 ));
+                $this->session->set_flashdata('class_type', 'alert alert-info');
                 $this->session->set_flashdata('flash_message', get_phrase('password_updated'));
             } else {
+                $this->session->set_flashdata('class_type', 'alert alert-danger');
                 $this->session->set_flashdata('flash_message', get_phrase('password_mismatch'));
             }
             
-            $this->session->set_flashdata('class_type', 'alert alert-info');
+            
             
             redirect(base_url() . 'index.php?student/manage_profile/', 'refresh');
         }

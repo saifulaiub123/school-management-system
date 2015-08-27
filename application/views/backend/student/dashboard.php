@@ -16,7 +16,7 @@ img:hover {
 <body>
 
 <div class="row">
-    
+   
 	<div class="col-sm-4">
             <a href="<?php echo base_url();?>index.php?admin/manage_attendance/<?php echo date("d/m/Y");?>">
                 <div class="boxshadow">

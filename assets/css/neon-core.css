@@ -8695,7 +8695,10 @@ body.page-fade-only-init > .page-container {
   border-left: 2px solid #0288D1;
   margin: 0;
   padding: 0;
-
+  position: absolute;
+  right: 0;
+  left: auto;
+  width: 280px;
   overflow: hidden;
   -webkit-border-radius: 0 3px 3px 3px;
   -webkit-background-clip: padding-box;
@@ -9023,6 +9026,30 @@ body.page-fade-only-init > .page-container {
     right: 0;
   }
 }
+
+/*manual*/
+.dropdown .user-header
+{
+    background-color: #3c8dbc;
+    text-align: center;
+    color: white;
+    padding: 10px 0px 10px 0px;
+}
+.dropdown .user-header img
+{
+    z-index: 5;
+    height: 90px;
+    width: 90px;
+    border: 3px solid;
+    border-color: transparent;
+    border-color: rgba(255,255,255,0.2);
+}
+
+
+
+/*manual end*/
+
+
 @media (max-width: 480px - 140) {
   .pull-none-xsm {
     float: none !important;

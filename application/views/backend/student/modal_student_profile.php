@@ -1,19 +1,24 @@
 <?php
-$student_info	=	$this->crud_model->get_student_info($param1);
+$student_info	=	$this->crud_model->get_student_info($this->session->userdata('student_id'));
 foreach($student_info as $row):?>
 
 <div class="profile-env">
 	
 	<header class="row">
+            <div class="container">
 		
-		<div class="col-sm-3">
-			
-			<a href="#" class="profile-picture">
+		<div class="col-sm-12" >
+                    <div style="margin: 0px auto;">
+                   
+                        <a href="#" class="profile-picture">
 				<img src="<?php echo $this->crud_model->get_image_url('student' , $row['student_id']);?>" 
-                	class="img-responsive img-circle" />
-			</a>
+                                     class="img-responsive img-circle" width="15%" height="15%" />
+                        </a>
+                    </div>
+                    
 			
 		</div>
+            </div>
 		
 		<div class="col-sm-9">
 			

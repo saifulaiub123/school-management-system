@@ -82,9 +82,9 @@ class Crud_model extends CI_Model {
 		$query	=	$this->db->get_where('subject' , array('subject_id' => $subject_id));
 		return $query->result_array();
 	}
-	function get_subjects_by_class($class_id)
+	function get_subjects_by_class($class_id,$dep_id,$sec_id)
 	{
-		$query	=	$this->db->get_where('subject' , array('class_id' => $class_id));
+		$query	=	$this->db->get_where('subject' , array('class_id' => $class_id,'dep_id'=>$dep_id,'sec_id'=>$sec_id));
 		return $query->result_array();
 	}
 	function get_subject_name_by_id($subject_id)
@@ -164,6 +164,7 @@ class Crud_model extends CI_Model {
 		{
 			if($mark_obtained >= $row['mark_from'] && $mark_obtained <= $row['mark_upto'])
 				return $row;
+                            
 		}
 	}
 

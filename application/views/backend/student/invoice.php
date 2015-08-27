@@ -42,16 +42,7 @@
 							<td><?php echo date('d M,Y', $row['creation_timestamp']); ?></td>
 							<td>
                             
-                                    <?php if ($row['due'] != 0):?>
-
                                    
-                                        <a href="#" class="btn btn-warning tn-primary btn-sm" onclick="showAjaxModal('<?php echo base_url();?>index.php?modal/popup/modal_take_payment/<?php echo $row['invoice_id'];?>');">
-                                            <i class="entypo-bookmarks"></i>
-                                                <?php echo get_phrase('take_payment');?>
-                                        </a>
-                                   
-                                    
-                                    <?php endif;?>
                                     
                                     <!-- VIEWING LINK -->
                                   
@@ -61,15 +52,7 @@
                                                 <?php echo get_phrase('view_invoice');?>
                                             </a>
                                                   
-                                        <a href="#" class="btn btn-info tn-primary btn-sm" onclick="showAjaxModal('<?php echo base_url();?>index.php?modal/popup/modal_edit_invoice/<?php echo $row['invoice_id'];?>');">
-                                            <i class="entypo-pencil"></i>
-                                                <?php echo get_phrase('edit');?>
-                                        </a>
-                                    
-                                        <a href="#" class="btn btn-danger tn-primary btn-sm" onclick="confirm_modal('<?php echo base_url();?>index.php?admin/invoice/delete/<?php echo $row['invoice_id'];?>');">
-                                            <i class="entypo-trash"></i>
-                                                <?php echo get_phrase('delete');?>
-                                            </a>
+                                       
                                                     
                           
         					</td>

@@ -7,7 +7,7 @@
 
 <div class="mail-compose">
 
-    <?php echo form_open('admin/message/send_new/', array('class' => 'form', 'enctype' => 'multipart/form-data')); ?>
+    <?php echo form_open('student/message/send_new/', array('class' => 'form', 'enctype' => 'multipart/form-data')); ?>
 
 
     <div class="form-group">
@@ -16,9 +16,24 @@
         <select class="form-control select2" name="reciever">
 
             <option value=""><?php echo get_phrase('select_a_user'); ?></option>
+            <optgroup label="<?php echo get_phrase('admin'); ?>">
+                <?php
+               
+                $admins = $this->db->get('admin')->result_array();
+                foreach ($admins as $row):
+                    ?>
+
+                    <option value="student-<?php echo $row['admin_id']; ?>">
+                        - <?php echo $row['name']; ?></option>
+
+                <?php endforeach; ?>
+            </optgroup>
             <optgroup label="<?php echo get_phrase('student'); ?>">
                 <?php
-                $students = $this->db->get('student')->result_array();
+                $class_id=$this->session->userdata('class_id');
+                $dep_id=$this->session->userdata('dep_id');
+                $sec_id=$this->session->userdata('sec_id');
+                $students = $this->db->get_where('student',array('class_id'=>$class_id,'dep_id'=>$dep_id,'sec_id'=>$sec_id))->result_array();
                 foreach ($students as $row):
                     ?>
 
@@ -38,17 +53,7 @@
 
                 <?php endforeach; ?>
             </optgroup>
-            <optgroup label="<?php echo get_phrase('parent'); ?>">
-                <?php
-                $parents = $this->db->get('parent')->result_array();
-                foreach ($parents as $row):
-                    ?>
-
-                    <option value="parent-<?php echo $row['parent_id']; ?>">
-                        - <?php echo $row['name']; ?></option>
-
-                <?php endforeach; ?>
-            </optgroup>
+            
         </select>
     </div>
 
@@ -56,7 +61,8 @@
     <div class="compose-message-editor">
         <textarea row="5" class="form-control wysihtml5" data-stylesheet-url="assets/css/wysihtml5-color.css" 
             name="message" placeholder="<?php echo get_phrase('write_your_message'); ?>" 
-            id="sample_wysiwyg"></textarea>
+            id="sample_wysiwyg">
+        </textarea>
     </div>
 
     <hr>

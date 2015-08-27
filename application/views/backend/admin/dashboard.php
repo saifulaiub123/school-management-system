@@ -216,10 +216,10 @@ $(document).ready(function() {
 						right: 'today prev,next'
 					},
 					
-					//defaultView: 'basicWeek',
+//					defaultView: 'basicWeek',
 					
 					editable: false,
-					firstDay: 1,
+					firstDay: 5,
 					height: 530,
 					droppable: false,
 					
@@ -252,7 +252,22 @@ $(document).ready(function() {
 	});
   </script>
 
-  
+  <style>
+      
+      .fc-week .fc-day:nth-child(1)
+      {
+          background: red;
+          color: white;
+          
+      }
+      .fc-view .fc-week:nth-child(1)
+      {
+          background: red;
+          color: white;
+      }
+      
+      
+  </style>
 </body>
 
 </html>

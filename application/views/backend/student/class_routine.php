@@ -2,14 +2,14 @@
 	<div class="col-md-12">
             
             
-            
+<!--            
             <table cellpadding="0" cellspacing="0" border="0" class="table">
                         <thead>
                             <tr>
                                 <th><?php echo get_phrase('class');?></th>
                                 <th><?php echo get_phrase('group');?></th>
                                 <th><?php echo get_phrase('section');?></th>
-                                <!--<th>Date</th>-->
+                                <th>Date</th>
                                 <th>Action</th>
                     
                             </tr>
@@ -47,16 +47,16 @@
                                             
                                 </select>
                             </td>
-<!--                            <td>
+                            <td>
                                 <input type="text" class="form-control datepicker" name="date" value="" data-start-view="2">
 
-                            </td>-->
+                            </td>
                             <td align="center"><input type="submit" value="<?php echo get_phrase("show_routine");?>" class="btn btn-info"/></td>
                         </tr>
                              </form>
                         
                         
-                    </table>
+                    </table>-->
     
     	<!------CONTROL TABS START------->
 <!--		<ul class="nav nav-tabs bordered">
@@ -79,23 +79,25 @@
                 	<?php 
 					$toggle = true;
 //					$classes = $this->db->get('class')->result_array();
+                                        $dep_id=$this->session->userdata('dep_id');
+                                        $sec_id=$this->session->userdata('sec_id');
                                         
-                                        $classes=$this->db->get_where('class', array('class_id' => $class_id))->result_array();
+                                        //$classes=$this->db->get_where('class', array('class_id' => $class_id))->result_array();
                                      
-					foreach($classes as $row):
+					//foreach($classes as $row):
 						?>
                         
                 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                 		<h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion-test-2" href="#collapse<?php echo $row['class_id'];?>">
-                                        <i class="entypo-rss"></i> Class <?php echo $row['name'];?>
+                                    <a data-toggle="collapse" data-parent="#accordion-test-2" href="#collapse<?php echo $class_id;?>">
+                                        <i class="entypo-rss"></i> Class <?php //echo $row['name'];?>
                                     </a>
                                     </h4>
                                 </div>
                 
-                                <div id="collapse<?php echo $row['class_id'];?>" class="panel-collapse collapse <?php if($toggle){echo 'in';$toggle=false;}?>">
+                                <div id="collapse<?php echo $class_id;?>" class="panel-collapse collapse <?php if($toggle){echo 'in';$toggle=false;}?>">
                                     <div class="panel-body">
                                         <table cellpadding="0" cellspacing="0" border="0"  class="table table-bordered">
                                             <tbody>
@@ -116,15 +118,15 @@
                                                     	<?php
                                                             $this->db->order_by("time_start", "asc");
                                                             $this->db->where('day' , $day);
-                                                            $this->db->where('class_id' , $row['class_id']);
+                                                            $this->db->where('class_id' , $class_id);
                                                             $this->db->where('dep_id' , $group_id);
                                                             $this->db->where('sec_id' , $sec_id);
                                                             $routines	=	$this->db->get('class_routine')->result_array();
 
                                                             foreach($routines as $row2):
                                                             ?>
-														<div class="btn-group">
-                                                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+														<!--<div class="btn-group">-->
+                                                            <div class="btn btn-primary dropdown-toggle" >
                                                             	<?php echo $this->crud_model->get_subject_name_by_id($row2['subject_id']);?>
                                                                 
                                                                 
@@ -135,24 +137,14 @@
                 
                                                               ?>
                                                                 
-                                                            	<span class="caret"></span>
-                                                            </button>
-															<ul class="dropdown-menu">
-																<li>
-                                                                <a href="#" onclick="showAjaxModal('<?php echo base_url();?>index.php?modal/popup/modal_edit_class_routine/<?php echo $row2['class_routine_id'];?>');">
-                                                                    <i class="entypo-pencil"></i>
-                                                                        <?php echo get_phrase('edit');?>
-                                                                    			</a>
-                                                         </li>
+                                                            	<!--<span class="caret"></span>-->
+                                                            </div>
+<!--															<ul class="dropdown-menu">
+																
                                                          
-                                                         <li>
-                                                            <a href="#" onclick="confirm_modal('<?php echo base_url();?>index.php?admin/class_routine/delete/<?php echo $row2['class_routine_id'];?>');">
-                                                                <i class="entypo-trash"></i>
-                                                                    <?php echo get_phrase('delete');?>
-                                                                </a>
-                                                    		</li>
-															</ul>
-														</div>
+                                                        
+															</ul>-->
+														<!--</div>-->
 														<?php endforeach;?>
 
                                                     </td>
@@ -166,7 +158,7 @@
                                 </div>
                             </div>
 						<?php
-					endforeach;
+					//endforeach;
 					?>
   				</div>
 			</div>

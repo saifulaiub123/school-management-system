@@ -15,7 +15,7 @@
                         </thead>
                         
                         <tr>
-                             <form method="post" action="<?php echo base_url();?>index.php?admin/<?php echo $target_function ?>" class="form">
+                             <form method="post" action="<?php echo base_url();?>index.php?student/<?php echo $target_function ?>" class="form">
                             <td>
                                 <select name="class_id" id="class_id" class="form-control" required data-validate="required" data-message-required="<?php echo get_phrase('value_required');?>">
                                                      <option value=""><?php echo get_phrase('select');?></option>
@@ -74,7 +74,7 @@
 
                        </thead>
 		<tbody>
-                        <form method="post" action="<?php echo base_url();?>index.php?admin/attendance_selector" class="form">
+                        <form method="post" action="<?php echo base_url();?>index.php?student/attendance_selector" class="form">
                             <tr>
 
                             </tr>
@@ -163,7 +163,7 @@
                 
        </thead>
 		<tbody>
-        	<form method="post" action="<?php echo base_url();?>index.php?admin/attendance_selector" class="form">
+        	<form method="post" action="<?php echo base_url();?>index.php?student/attendance_selector" class="form">
                     <tr>
                         
                         
@@ -303,7 +303,7 @@
 						$status		= $attendance->status;
                     	?>
                         
-                        <form method="post" action="<?php echo base_url();?>index.php?admin/manage_attendance/<?php echo $date.'/'.$month.'/'.$year.'/'.$class_id .'/'.$group_id.'/'.$sec_id;?>">
+                        <form method="post" action="<?php echo base_url();?>index.php?student/manage_attendance/<?php echo $date.'/'.$month.'/'.$year.'/'.$class_id .'/'.$group_id.'/'.$sec_id;?>">
                             <select name="status" class="form-control" style="width:100px; float:left;">
                                 <option value="0" <?php if($status == 0)echo 'selected="selected"';?>></option>
                                 <option value="1" <?php if($status == 1)echo 'selected="selected"';?>>Present</option>

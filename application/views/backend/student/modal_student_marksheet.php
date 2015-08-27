@@ -44,7 +44,7 @@
                                         </thead>
                                         <tbody>
                                             <?php 
-                                            $subjects	=	$this->crud_model->get_subjects_by_class($row1['class_id']);
+                                            $subjects	=	$this->crud_model->get_subjects_by_class($row1['class_id'],$row1['dep_id'],$row1['sec_id']);
                                             foreach($subjects as $row2):
                                             $total_subjects++;
                                             ?>
@@ -54,7 +54,7 @@
                                                     <?php
                                                     //obtained marks
                                                     $verify_data	=	array(	'exam_id' => $row0['exam_id'] ,
-                                                                        'class_id' => $row1['class_id'] ,
+//                                                                        'class_id' => $row1['class_id'] ,
                                                                         'subject_id' => $row2['subject_id'] , 
                                                                         'student_id' => $row1['student_id']);
                                                                         

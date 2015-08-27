@@ -100,6 +100,9 @@ class Login extends CI_Controller
             $row = $query->row();
 			  $this->session->set_userdata('student_login', '1');
 			  $this->session->set_userdata('student_id', $row->student_id);
+                          $this->session->set_userdata('class_id', $row->class_id);
+                          $this->session->set_userdata('dep_id', $row->dep_id);
+                          $this->session->set_userdata('sec_id', $row->sec_id);
 			  $this->session->set_userdata('name', $row->name);
 			  $this->session->set_userdata('login_type', 'student');
 			  return 'success';
